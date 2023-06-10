@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 export const GET = async (req:Request,res:NextResponse) => {
   try {
-    const id = req.url.split("/blog")[1]
+    const id = req.url.split("/blog/")[1]
     await main()
     const post = await prisma.posts.findFirst({
       where:{
