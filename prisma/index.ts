@@ -3,12 +3,7 @@ import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
 
-type Posts = {
-  title: string,
-  description: string
-}
-
-async function main() {
+export async function main() {
   try {
     await prisma.$connect()
   } catch(err) {
