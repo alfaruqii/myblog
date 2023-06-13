@@ -20,7 +20,7 @@ const fetchBlogs = async () => {
 export default async function Home() {
   const posts = await fetchBlogs()
   return (
-    <main>
+    <main className="transition-all ">
       <div className="border-2 border-white p-4 w-fit mx-auto mt-4 rounded-sm">
         <p className="font-bold text-2xl">
           Welcome to my blog 📝
@@ -35,16 +35,23 @@ export default async function Home() {
       </div>
       <div>
         {posts?.map((post:Post) => {
-          return <div className="w-fit mx-auto p-3  first:mt-6 mt-3 border" key={post.id}>
+          return <div className="w-fit mx-auto p-5 first:mt-6 mt-3 border hover:rounded-lg focus:rounded-lg duration-300" key={post.id}>
             <h1 className="text-xl font-medium">
-              Title : {post.title}
+              {post.title}
             </h1>
             <p className="">
-              Description : {post.description}
+              {post.description}
             </p>
-            <p className="mt-3 text-xs text-slate-400">
+            <div className="mt-3 flex justify-between items-center">
+              <p className="text-xs text-slate-400">
               Uploaded at : {new Date(post.date).toLocaleString()}
-            </p>
+              </p>
+              <Link post={post} className="ml-3" href="/blog/edit">
+                <button>
+                  🖊️
+                </button>
+              </Link>
+            </div>
           </div>
         })}
       </div>

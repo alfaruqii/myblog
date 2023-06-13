@@ -1,5 +1,5 @@
 "use client"
-import Link from "next/link"
+import BackHome from "@/app/components/BackHome"
 import React, { useRef } from "react"
 
 const addNewPost = async ({title,description}:{title:string,description:string}) => {
@@ -28,7 +28,7 @@ function page() {
         <h1 className="font-bold text-3xl">
           Adding new post 📤
         </h1>
-        <Link href="/">Back to home</Link>
+        <BackHome/>
       </div>
       <form className="flex flex-col w-1/2 p-12 mx-auto" onSubmit={handleSubmit}>
         <label htmlFor="new-title-post">Add title</label>
