@@ -1,16 +1,26 @@
 "use client"
+import Link from "next/link"
 import React, { useRef } from "react"
 
 const addNewPost = async ({title,description}:{title:string,description:string}) => {
-  const posts = await fetch("https://localhost:3000/api/blog/")
+   const data = await fetch("http://localhost:3000/api/blog",{
+    method:"POST",
+    body:JSON.stringify({title,description}),
+    headers:{
+      "Content-Type": "application/json; charset=utf8"
+    }}
+  ).then((res) => res.json())
+  return data
 }
 
 function page() {
   const title = useRef<HTMLInputElement | null>(null)
   const description = useRef<HTMLTextAreaElement | null>(null)
-  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addNewPost({title,description})
+    if(title.current?.value && description.current?.value) {
+      await addNewPost({title:title.current?.value,description:description.current?.value})
+    }
   }
   return (
     <div>
@@ -18,6 +28,7 @@ function page() {
         <h1 className="font-bold text-3xl">
           Adding new post 📤
         </h1>
+        <Link href="/">Back to home</Link>
       </div>
       <form className="flex flex-col w-1/2 p-12 mx-auto" onSubmit={handleSubmit}>
         <label htmlFor="new-title-post">Add title</label>
