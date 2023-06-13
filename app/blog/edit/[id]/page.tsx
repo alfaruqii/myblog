@@ -1,7 +1,7 @@
 "use client"
 import BackHome from '@/app/components/BackHome'
-import { useRouter } from 'next/router'
 import React, { useRef } from "react"
+import toast, { Toaster } from 'react-hot-toast';
 
 type Id = {
   params:{
@@ -24,6 +24,17 @@ async function page({params:specificId}:Id) {
   const title = useRef<HTMLInputElement | null>(null)
   const description = useRef<HTMLTextAreaElement | null>(null)
   const {id} = specificId
+  const notify = () => toast(
+    'Succes ✅', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  })
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if(id && title.current?.value && description.current?.value) {
@@ -32,6 +43,7 @@ async function page({params:specificId}:Id) {
   }
   return (
     <div>
+      <Toaster/>
       <div className='border p-4 mt-3 w-fit mx-auto'>
         <h1 className='font-bold text-3xl'>
           Edit Blog Page
@@ -43,7 +55,7 @@ async function page({params:specificId}:Id) {
         <input id="new-title-post" type="text" placeholder="Your title" className="text-black p-2 rounded-sm" ref={title}/>
         <label htmlFor="new-description-post" className="mt-3">Add description</label>
         <textarea id="new-description-post" placeholder="Your description" className="text-black p-2 rounded-sm" ref={description}/>
-        <button className="w-fit p-2 border border-white rounded mt-2" type="submit">Submit</button>
+        <button onClick={notify} className="w-fit p-2 border border-white rounded mt-2" type="submit">Submit</button>
       </form>
     </div>
   )
