@@ -46,7 +46,7 @@ export default async function Home() {
               <p className="text-xs text-slate-400">
               Uploaded at : {new Date(post.date).toLocaleString()}
               </p>
-              <Link post={post} className="ml-3" href="/blog/edit">
+              <Link className="ml-3" href={`/blog/edit/${post.id}`}>
                 <button>
                   🖊️
                 </button>
