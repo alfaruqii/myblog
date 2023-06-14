@@ -14,7 +14,7 @@ const editPost = async ({id,title,description}:{id:string,title:string,descripti
     method:"PUT",
     body:JSON.stringify({title,description}),
     headers:{
-      "Content-Type": "application/json; charset=utf8"
+      "Content-Type": "application/json"
     }}
   ).then((res) => res.json())
   return data

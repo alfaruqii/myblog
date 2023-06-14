@@ -8,7 +8,7 @@ const addNewPost = async ({title,description}:{title:string,description:string})
     method:"POST",
     body:JSON.stringify({title,description}),
     headers:{
-      "Content-Type": "application/json; charset=utf8"
+      "Content-Type": "application/json"
     }}
   ).then((res) => res.json())
   return data
