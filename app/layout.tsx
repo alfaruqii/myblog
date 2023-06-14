@@ -1,7 +1,7 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Fira_Mono } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Fira_Mono({ subsets: ['latin'],weight:"400" })
 
 export const metadata = {
   title: 'Simple Blog App',
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   )
 }

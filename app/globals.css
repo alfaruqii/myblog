@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-slate-900
-  }
-  div {
-    @apply text-white
-  }
+body {
+  background-color: #FFFAEF;
+  font-family: monospace;
 }

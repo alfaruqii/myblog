@@ -21,12 +21,12 @@ export default async function Home() {
   const posts = await fetchBlogs()
   return (
     <main className="transition-all ">
-      <div className="border-2 border-white p-4 w-fit mx-auto mt-4 rounded-sm">
+      <div className="border-2 border-slate-600 p-4 w-fit mx-auto mt-4 rounded-sm">
         <p className="font-bold text-2xl">
           Welcome to my blog 📝
         </p>
       </div>
-      <div className="border border-white p-2 w-fit mx-auto mt-3 rounded-sm">
+      <div className="border border-slate-600 p-2 w-fit mx-auto mt-3 rounded-sm">
         <button>
           <Link href="/blog/new">
             Add new blog post
@@ -35,7 +35,7 @@ export default async function Home() {
       </div>
       <div>
         {posts?.map((post:Post) => {
-          return <div className="w-fit mx-auto p-5 first:mt-6 mt-3 border hover:rounded-lg focus:rounded-lg duration-300" key={post.id}>
+          return <div className="w-fit mx-auto p-5 first:mt-6 mt-3 border border-slate-600 shadow-md hover:rounded-lg focus:rounded-lg duration-300" key={post.id}>
             <h1 className="text-xl font-medium">
               {post.title}
             </h1>
@@ -46,9 +46,14 @@ export default async function Home() {
               <p className="text-xs text-slate-400">
               Uploaded at : {new Date(post.date).toLocaleString()}
               </p>
-              <Link className="ml-3" href={`/blog/edit/${post.id}`}>
-                <button>
+              <Link className="mx-3" href={`/blog/edit/${post.id}`}>
+                <button className="px-2 py-1 border border-slate-300 rounded-sm">
                   🖊️
+                </button>
+              </Link>
+              <Link href={`/blog/delete/${post.id}`}>
+                <button className="px-2 py-1 border border-slate-300 rounded-sm">
+                  Delete
                 </button>
               </Link>
             </div>
