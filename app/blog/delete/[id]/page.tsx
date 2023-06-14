@@ -28,7 +28,7 @@ function page({params:specificId}: Id) {
   const {id} = specificId
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if(verification.current.value.toLowerCase() === "yes" && id) {
+    if(verification.current?.value.toLowerCase() === "yes" && id) {
       await deletePost({id})
     }
   }
