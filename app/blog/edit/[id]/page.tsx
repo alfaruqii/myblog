@@ -43,6 +43,7 @@ async function page({params:specificId}:Id) {
   }
   return (
     <div>
+      <Toaster/>
       <div className='border-2 border-slate-600 p-4 w-fit mx-auto mt-4 rounded-sm shadow-md'>
         <h1 className='font-bold text-3xl mb-1'>
           Edit Blog Page

@@ -46,6 +46,7 @@ export default async function Home() {
               <p className="text-xs text-slate-400">
               Uploaded at : {new Date(post.date).toLocaleString()}
               </p>
+              <div>
               <Link className="mx-3" href={`/blog/edit/${post.id}`}>
                 <button className="px-2 py-1 border border-slate-300 rounded-sm">
                   🖊️
@@ -56,6 +57,7 @@ export default async function Home() {
                   Delete
                 </button>
               </Link>
+              </div>
             </div>
           </div>
         })}
