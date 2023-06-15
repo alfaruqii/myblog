@@ -35,7 +35,9 @@ export default async function Home() {
       </div>
       <div>
         {posts?.map((post:Post) => {
-          return <div className="w-fit mx-auto p-5 first:mt-6 mt-3 border border-slate-600 shadow-md hover:border-2 focus:rounded-lg duration-100" key={post.id}>
+          return (
+            <Link href={`/blog/${post.id}`} legacyBehavior>
+            <div className="w-fit mx-auto p-5 first:mt-6 mt-3 border border-slate-600 shadow-md hover:border-2 focus:rounded-lg duration-100" key={post.id}>
             <h1 className="text-xl font-medium">
               {post.title}
             </h1>
@@ -60,6 +62,8 @@ export default async function Home() {
               </div>
             </div>
           </div>
+          </Link>
+          )
         })}
       </div>
     </main>
