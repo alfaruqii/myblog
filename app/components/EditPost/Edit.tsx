@@ -1,17 +1,30 @@
 "use client"
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { editPost } from "@/app/blog/edit/[id]/page";
 import type { Id } from "@/app/blog/edit/[id]/page"
 import toast from 'react-hot-toast';
 
 function Edit({params:specificId}:Id) {
+  const [alreadyEdited,setAlreadyEdited] = useState(false)
   const title = useRef<HTMLInputElement | null>(null)
   const description = useRef<HTMLTextAreaElement | null>(null)
   const {id} = specificId
   const notify = () => {
-    if(title.current?.value && description.current?.value) {
+    if(title.current?.value && description.current?.value && alreadyEdited) {
       return toast(
-        'Edit was succes ✅', {
+        'Already Edited ✅', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    }else if(title.current?.value && description.current?.value){
+      return toast(
+        'Edit was Succes ✅', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -37,7 +50,8 @@ function Edit({params:specificId}:Id) {
   }
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if(id && title.current?.value && description.current?.value) {
+    if(id && title.current?.value && description.current?.value && !alreadyEdited) {
+      setAlreadyEdited(true)
       await editPost({id,title:title.current?.value,description:description.current?.value})
     }
   }
